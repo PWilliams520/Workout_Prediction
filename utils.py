@@ -13,7 +13,7 @@ import config
 
 def loadCSVInfo():
     rows = []
-    with open(config.ACTIVITY_FILE_NAME, 'r') as csv_file:
+    with open(config.ACTIVITY_FILE_NAME, 'r', encoding='utf8') as csv_file:
         csv_reader = csv.reader(csv_file)
         for row in csv_reader:
             rows.append(row)
@@ -42,9 +42,14 @@ def dropAllLines(header, activities):
             clean_up_headers.append(header[index])
         index += 1
     for activity in activities:
+        valid_hr = True
         sub_activity = []
         for index in indexes:
-            sub_activity.append(activity[index])
-        clean_up_activities.append(sub_activity)
+            if activity[index] != config.INVALID_FIELD:
+                sub_activity.append(activity[index])
+            else:
+                valid_hr = not valid_hr
+        if valid_hr:
+            clean_up_activities.append(sub_activity)
 
     return clean_up_headers, clean_up_activities

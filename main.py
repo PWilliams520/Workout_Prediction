@@ -27,18 +27,30 @@ def main():
     all_hr = [int(x[1]) for x in cleaned_up_activities]
     print(all_hr)
 
-    moving_avg_hr = calculateMovingAverage(config.MOVING_AVG_WINDOW, all_hr)
+    moving_avg_hr = calculateSimpleMovingAverage(config.MOVING_AVG_WINDOW, all_hr)
+    cumulative_avg_hr = calculateCumulativeMovingAverage(config.MOVING_AVG_WINDOW, all_hr)
     print("moving_avg_hr:\n", moving_avg_hr)
+    print("cumulative_avg_hr:\n", cumulative_avg_hr)
     print(len(moving_avg_hr))
 
 
-def calculateMovingAverage(window, cleaned_up_activities):
+def calculateSimpleMovingAverage(window, cleaned_up_activities):
     moving_avg = []
     for i in range(len(cleaned_up_activities)):
         if i < window:
             moving_avg.append(-1)
         else:
             moving_avg.append(sum([x for x in cleaned_up_activities[i - window:i]]) / window)
+    return moving_avg
+
+
+def calculateCumulativeMovingAverage(window, cleaned_up_activities):
+    moving_avg = []
+    for i in range(len(cleaned_up_activities)):
+        if i < window:
+            moving_avg.append(-1)
+        else:
+            moving_avg.append(sum([x for x in cleaned_up_activities[0:i]]) / i)
     return moving_avg
 
 

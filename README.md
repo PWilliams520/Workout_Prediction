@@ -1,5 +1,6 @@
 # DataMiningProject
 Repo for CSC-691 Data Mining's project: https://github.com/stbamb/DataMiningProject.git
+
 Patrick Williams, Esteban Murillo, Sarah Parsons
 November 18, 2019
 

@@ -14,7 +14,7 @@ November 18, 2019
 
 DMProject.ipynb
 
-Please run the Jupyter notebook to view the Logistic Regression model built for the dataset in activities.csv.
+Please run the Jupyter notebook (DMProject.ipynb) to view the Logistic Regression model built for the dataset in activities.csv.
 
 
 * ### Code for Graphs:

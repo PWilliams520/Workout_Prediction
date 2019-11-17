@@ -29,23 +29,25 @@ def main():
     all_hr = [int(x[1]) for x in cleaned_up_activities]
     all_hr_labels = [0 if value <= config.HR_THRESHOLD else 1 for value in all_hr]
 
-    print("HR values (all time):\n", all_hr)
-    print("\nHR labels (all time):\n", all_hr_labels)
+    # print("HR values (all time):\n", all_hr)
+    # print("\nHR labels (all time):\n", all_hr_labels)
 
-    best_window = calculateBestWindow(all_hr)
+    # best_window = calculateBestWindow(all_hr)
+    best_window = 15
     print("\nBest window value found for distances: {}".format(best_window))
 
     simple_moving_average = calculateSimpleMovingAverage(best_window, all_hr)
     simple_moving_average_labels = [0 if value <= config.HR_THRESHOLD else 1 for value in simple_moving_average]
 
-    # print(simple_moving_average)
-    # print("Predicted values for window = {}:\n{}".format(best_window, simple_moving_average_labels))
-    # print("Actual values for window = {}:\n{}".format(best_window, all_hr_labels[best_window:]))
+    print("\nPredicted values for window = {}:\n{}".format(best_window, simple_moving_average_labels))
+    print("\nActual values for window = {}:\n{}".format(best_window, all_hr_labels[best_window:]))
     value = getPredictedAccuracyLabels(all_hr_labels, simple_moving_average_labels, best_window)
-    print("For window {}, getting accuracy of {:.2%}\n".format(best_window, value))
+    confusion_matrix = getConfusionMatrix(all_hr_labels, simple_moving_average_labels, best_window)
+    print("\nFor window {}, getting accuracy of {:.2%}".format(best_window, value))
+    print("\nFor window {}, getting confusion matrix {}".format(best_window, confusion_matrix))
 
-    values = calculateBestWindow2(all_hr)
-    print(values)
+    # values = calculateBestWindow2(all_hr)
+    # print(values)
 
 
 def calculateBestWindow(all_hr):
@@ -86,6 +88,25 @@ def getPredictedAccuracyLabels(original_set, predicted_set, window):
             right_predictions += 1
         index += 1
     return right_predictions / len(predicted_set)
+
+
+def getConfusionMatrix(actual_set, predicted_set, window):
+    index = 0
+    tp = 0
+    fp = 0
+    fn = 0
+    tn = 0
+    for i in range(window, len(actual_set)):
+        if actual_set[i] == predicted_set[index] == 1:
+            tp += 1
+        elif actual_set[i] == 0 and predicted_set[index] == 1:
+            fp += 1
+        elif actual_set[i] == 1 and predicted_set[index] == 0:
+            fn += 1
+        elif actual_set[i] == predicted_set[index] == 0:
+            tn += 1
+        index += 1
+    return [[tp, fn], [fp, tn]]
 
 
 def calculateSimpleMovingAverage(window, cleaned_up_activities):

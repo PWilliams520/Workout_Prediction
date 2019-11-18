@@ -18,6 +18,7 @@ The simple moving average algorithm takes two parameters; a window and a list of
 * ### Logistic Regression Code:
 
 DMProject.ipynb
+
 The logistic regression algorithm uses a predefined feature set (Distance, Elevation, HRSS, and Avg Pace) for a given window size to predict average heart rate for a set of observations (based on the size of the test set). The model is fit to the training set first, then used to predict average heart rate for each test instance. 
 
 * Please run the Jupyter notebook (DMProject.ipynb) to view the results from the Logistic Regression model built for the dataset provided in activities.csv.

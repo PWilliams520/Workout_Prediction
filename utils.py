@@ -53,3 +53,38 @@ def dropAllLines(header, activities):
             clean_up_activities.append(sub_activity)
 
     return clean_up_headers, clean_up_activities
+
+
+def mergesort(arr):
+    n = len(arr)
+    if n == 1:
+        return arr
+    arr1 = arr[0:n // 2]
+    arr2 = arr[n // 2:]
+    arr1 = mergesort(arr1)
+    arr2 = mergesort(arr2)
+    return mergesort_aux(arr1, arr2)
+
+
+def mergesort_aux(arr1, arr2):
+    result = []
+    n1 = len(arr1)
+    n2 = len(arr2)
+    while n1 > 0 and n2 > 0:
+        if arr1[0] > arr2[0]:
+            result.append(arr2[0])
+            del arr2[0]
+            n2 -= 1
+        else:
+            result.append(arr1[0])
+            del arr1[0]
+            n1 -= 1
+    while n1 > 0:
+        result.append(arr1[0])
+        del arr1[0]
+        n1 -= 1
+    while n2 > 0:
+        result.append(arr2[0])
+        del arr2[0]
+        n2 -= 1
+    return result

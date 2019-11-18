@@ -33,3 +33,6 @@ Running this file will automatically generate the following graphs and save them
 * A graph of the binary (High/Low) heart rate prediction accuracies of each window size for both the simple moving average and logistic regression models. Threshold for High/Low classification is 154 bpm.
 * Confusion matrices of both models for all binary predictions.
 
+* ### Report:
+
+Please see Data_Mining_Project_Milestone_3___CSC691.pdf for the final report.

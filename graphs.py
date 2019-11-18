@@ -11,6 +11,7 @@ from dateutil.parser import parse
 import csv
 import numpy as np
 from pandas.plotting import register_matplotlib_converters
+import os, errno
 
 
 def calculateSimpleMovingAverage(window, cleaned_up_activities):
@@ -56,6 +57,11 @@ def plot_matrix(matrix):
 
 
 def create_and_save_graphs():
+    try:
+        os.makedirs('output')
+    except OSError as e:
+        if e.errno != errno.EEXIST:
+            raise
     register_matplotlib_converters()
     activities = utils.loadCSVInfo()
     header = activities[0]

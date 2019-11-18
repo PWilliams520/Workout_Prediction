@@ -10,6 +10,7 @@ from sklearn.metrics import classification_report
 
 import config
 import utils
+import graphs
 
 
 def main():
@@ -49,6 +50,8 @@ def main():
     print("\nFor window {}, getting confusion matrix {}".format(best_window, confusion_matrix))
 
     print("\n", classification_report(all_hr_labels[best_window:], simple_moving_average_labels))
+
+    graphs.create_and_save_graphs()
 
     # values = calculateBestWindow2(all_hr)
     # print(values)

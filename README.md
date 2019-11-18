@@ -20,9 +20,15 @@ Please run the Jupyter notebook (DMProject.ipynb) to view the Logistic Regressio
 
 * ### Code for Graphs:
 
+Graph_Data.py
+
+Running this file will automatically generate the following graphs and save them to the output folder:
+* A graph of the average heart rate for each workout over time. Overlaid is a graph of the predicted heart rate for each workout using the simple moving average model, with a window size of 15.
+* A graph of the binary (High/Low) heart rate prediction accuracies of each window size for both the simple moving average and logistic regression models. Threshold for High/Low classification is 154 bpm.
+* Confusion matrices of both models for all binary predictions.
+
 * ### Notes:
 
 	* In order to run the code, execute the 'main.py' file. Make sure to have the 'activities.csv' file in the same directory. In order to change code behavior modify variables in the 'config.py' file accordingly. 
-
 
 

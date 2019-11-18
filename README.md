@@ -20,4 +20,9 @@ Please run the Jupyter notebook (DMProject.ipynb) to view the Logistic Regressio
 
 * ### Code for Graphs:
 
+* ### Notes:
+
+	* In order to run the code, execute the 'main.py' file. Make sure to have the 'activities.csv' file in the same directory. In order to change code behavior modify variables in the 'config.py' file accordingly. 
+
+
 

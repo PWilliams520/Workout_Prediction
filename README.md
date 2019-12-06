@@ -56,3 +56,7 @@ Please see Data_Mining_Project_Milestone_4_CSC691.pdf for the final report.
 * ### TeX and bib Files:
 
 Please see Data_Mining_Project_Milestone_4_CSC691.zip for the TeX and bib files.
+
+* ### Presentation Powerpoint:
+
+Please see [CSC691] - Final Project Presentation.pptx for the presentation powerpoint.

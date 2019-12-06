@@ -52,3 +52,7 @@ Running this file will automatically generate the following graphs and save them
 * ### Report:
 
 Please see Data_Mining_Project_Milestone_4_CSC691.pdf for the final report.
+
+* ### TeX and bib Files:
+
+Please see Data_Mining_Project_Milestone_4_CSC691.zip for the TeX and bib files.

@@ -395,7 +395,7 @@ else:
 # Define X and y for test and train set
 X, y = train_test(df_selection, optimal_window)
 
-clf_name = 'RF' #input('Please specify the classification model you wish to test (LR or RF): \n'))
+clf_name = input('Please specify the classification model you wish to test (LR or RF) for Logistic Regression or Random Forest: \n')
 
 if clf_name == 'LR':
     print('Analysis for Logistic Regression\n-------------------------------------')

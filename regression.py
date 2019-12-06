@@ -394,7 +394,8 @@ df_bin = prep_data(df)
 # Define X, binary X, and y for test and train set
 X, X_bin, y = train_test(df_bin, 128)
 
-clf_name = 'LinR' #str(input('Please specify the classification model you wish to test (LR or RF): \n'))
+clf_name = input('Please specify the regression model you wish to test (LinR, GB, or RFR) for Linear Regression, '
+                 'Gradient Boosting Regression, or Random Forest Regression: \n')
 
 if clf_name == 'GB':
     print('Analysis for Gradient Boosting\n -------------------------------------')

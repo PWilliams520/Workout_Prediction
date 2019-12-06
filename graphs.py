@@ -11,7 +11,8 @@ from dateutil.parser import parse
 import csv
 import numpy as np
 from pandas.plotting import register_matplotlib_converters
-import os, errno
+import os
+import errno
 
 
 def calculateSimpleMovingAverage(window, cleaned_up_activities):
@@ -82,6 +83,7 @@ def create_and_save_graphs():
     df = df.set_index('date')
 
     data_plot = seaborn.lineplot(data=df)
+    df.to_csv("avg_heart_rate.csv")
     plt.yticks(np.arange(0, max(hr_list), 20))
     data_plot.set(xlabel="Date (YYYY-MM)", ylabel="Average Heart Rate", title="Average Heart Rate per Workout (Rides/Virtual Rides)")
     plt.setp(data_plot.get_xticklabels(), rotation=20, ha="right", rotation_mode="anchor")
@@ -95,6 +97,8 @@ def create_and_save_graphs():
 
     window_list = [int(i[0]) for i in window_acc_data]
     acc_list = [float(i[1]) for i in window_acc_data]
+    df = pd.DataFrame({"Window Size": window_list, "Accuracy": acc_list})
+    df.to_csv("window1.csv")
     window_size_plot = seaborn.lineplot(x=window_list[:-1], y=acc_list[:-1], label="Logistic Regression")
     window_size_plot.set(xlabel="Window Size", ylabel="Accuracy", title="Accuracy of Window Sizes")
     plt.axvline(15, 0, max(acc_list), ls='--', c='green', label="Chosen Window Size (15)")
@@ -104,6 +108,8 @@ def create_and_save_graphs():
 
     window_list = [int(i[1]) for i in data]
     acc_list = [float(i[0]) for i in data]
+    df = pd.DataFrame({"Window Size": window_list, "Accuracy": acc_list})
+    df.to_csv("window2.csv")
     seaborn.lineplot(x=window_list, y=acc_list, label="Moving Average")
     plt.legend(loc='lower left')
     plt.savefig("output/window_size_accuracies.png")

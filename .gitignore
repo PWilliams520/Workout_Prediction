@@ -106,3 +106,4 @@ venv.bak/
 # PyCharm folders
 .idea/
 *.png
+.Rproj.user

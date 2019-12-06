@@ -31,6 +31,13 @@ The Gradient Boosting Regression, Random Forest Regression, and Linear Regressio
 
 * Please run the regression.py script to view the results from the Gradient Boosting Regression and Random Forest Regression models built for the dataset provided in activities.csv.
 
+* ### Clustering Code:
+
+k_means.py
+
+This file automatically runs 2-Means clustering on the Updated_Data.csv file included in the repo. The features used for clustering are Workout Duration, Distance, and Calories Burned.
+
+The output clusters are written to the file 2_means_results.csv. The user can then open this .csv file and filter the cluster column to observe the results.
 
 * ### Code for Graphs:
 
@@ -40,6 +47,7 @@ Running this file will automatically generate the following graphs and save them
 * A graph of the average heart rate for each workout over time. Overlaid is a graph of the predicted heart rate for each workout using the simple moving average model, with a window size of 15.
 * A graph of the binary (High/Low) heart rate prediction accuracies of each window size for both the simple moving average and logistic regression models. Threshold for High/Low classification is 154 bpm.
 * Confusion matrices of both models for all binary predictions.
+
 
 * ### Report:
 

@@ -27,7 +27,7 @@ The Logistic Regression and Random Forest algorithms use a predefined feature se
 
 regression.py
 
-The Gradient Boosting Regression and Random Forest Regression algorithms use a predefined feature set (Distance, Elevation, HRSS, and Avg Pace) for a given window size to predict average heart rate for a set of observations (based on the size of the test set). The model is fit to the training set first, then used to predict average heart rate for each test instance. 
+The Gradient Boosting Regression, Random Forest Regression, and Linear Regression algorithms use a predefined feature set (Distance, Elevation, HRSS, and Avg Pace) for a given window size to predict average heart rate for a set of observations (based on the size of the test set). The model is fit to the training set first, then used to predict average heart rate for each test instance. 
 
 * Please run the regression.py script to view the results from the Gradient Boosting Regression and Random Forest Regression models built for the dataset provided in activities.csv.
 

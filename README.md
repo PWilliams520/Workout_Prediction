@@ -3,7 +3,7 @@
 
 Patrick Williams, Esteban Murillo, Sarah Parsons
 
-November 18, 2019
+December 6, 2019
 
 ## References:
 
@@ -15,13 +15,21 @@ The simple moving average algorithm takes two parameters; a window and a list of
 
 * In order to run the code, execute the 'main.py' file. Make sure to have the 'activities.csv' file in the same directory. In order to change code behavior modify variables in the 'config.py' file accordingly.  
 
-* ### Logistic Regression Code:
+* ### Classification Code:
 
-DMProject.ipynb
+classification.py
 
-The logistic regression algorithm uses a predefined feature set (Distance, Elevation, HRSS, and Avg Pace) for a given window size to predict average heart rate for a set of observations (based on the size of the test set). The model is fit to the training set first, then used to predict average heart rate for each test instance. 
+The Logistic Regression and Random Forest algorithms use a predefined feature set (Distance, Elevation, HRSS, and Avg Pace) for a given window size to predict high or low average heart rate for a set of observations (based on the size of the test set). The model is fit to the training set first, then used to predict high or low average heart rate for each test instance. 
 
-* Please run the Jupyter notebook (DMProject.ipynb) to view the results from the Logistic Regression model built for the dataset provided in activities.csv.
+* Please run the classification.py script to view the results from the Logistic Regression and Random Forest models built for the dataset provided in activities.csv.
+
+* ### Regression Code:
+
+regression.py
+
+The Gradient Boosting Regression and Random Forest Regression algorithms use a predefined feature set (Distance, Elevation, HRSS, and Avg Pace) for a given window size to predict average heart rate for a set of observations (based on the size of the test set). The model is fit to the training set first, then used to predict average heart rate for each test instance. 
+
+* Please run the regression.py script to view the results from the Gradient Boosting Regression and Random Forest Regression models built for the dataset provided in activities.csv.
 
 
 * ### Code for Graphs:
@@ -35,4 +43,4 @@ Running this file will automatically generate the following graphs and save them
 
 * ### Report:
 
-Please see Data_Mining_Project_Milestone_3___CSC691.pdf for the final report.
+Please see Data_Mining_Project_Milestone_4_CSC691.pdf for the final report.

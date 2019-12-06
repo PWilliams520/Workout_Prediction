@@ -13,7 +13,7 @@ from sklearn.feature_selection import RFE
 from sklearn.linear_model import LogisticRegression
 import statsmodels
 import statsmodels.api as sm
-from sklearn.linear_model import LogisticRegression
+from sklearn.linear_model import LogisticRegression, LinearRegression
 from sklearn.ensemble import RandomForestClassifier
 from sklearn import metrics
 from sklearn.metrics import classification_report
@@ -218,8 +218,8 @@ def read_windows():
     with open('MSEs_for_Window_Size_Variations_' + clf_name + '.csv', 'r') as csvfile:
         for i, row in enumerate(csv.reader(csvfile, delimiter='\n')):
             mylist.loc[i, 'Window'] = row[0].split(':')[0]
-            mylist.loc[i, 'MSE'] = row[0].split(':')[1]
-    print(mylist.sort_values('MSE', 0, ascending=False))
+            mylist.loc[i, 'MSE'] = float(row[0].split(':')[1])
+    print(mylist.sort_values('MSE', 0, ascending=True))
 
 def read_look_aheads():
     mylist = pd.DataFrame(columns=[])
@@ -233,8 +233,8 @@ def read_look_aheads():
     with open('MSEs_for_Look_Ahead_Variations_' + clf_name + '.csv', 'r') as csvfile:
         for i, row in enumerate(csv.reader(csvfile, delimiter='\n')):
             mylist2.loc[i, 'Look Ahead'] = row[0].split(':')[0]
-            mylist2.loc[i, 'MSE'] = row[0].split(':')[1]
-    print(mylist2.sort_values('MSE', 0, ascending=False))
+            mylist2.loc[i, 'MSE'] = float(row[0].split(':')[1])
+    print(mylist2.sort_values('MSE', 0, ascending=True))
 
 def results(actuals, preds):
     confusion_matrix1 = confusion_matrix(actuals, preds)
@@ -394,7 +394,7 @@ df_bin = prep_data(df)
 # Define X, binary X, and y for test and train set
 X, X_bin, y = train_test(df_bin, 128)
 
-clf_name = 'RFR' #str(input('Please specify the classification model you wish to test (LR or RF): \n'))
+clf_name = 'LinR' #str(input('Please specify the classification model you wish to test (LR or RF): \n'))
 
 if clf_name == 'GB':
     print('Analysis for Gradient Boosting\n -------------------------------------')
@@ -469,6 +469,47 @@ if clf_name == 'RFR':
         'Please indicate Y/N to proceed with running GB with the optimal window size and look ahead value: {}, {} \n'.format(
             309 - optimal_window, look_ahead))
     if LR_lookinput == 'Y':
+        avg_accuracy, predictions, actuals, mse = model_lookahead(optimal_window, X, y, look_ahead, clf)
+        # Save predictions and actuals for LR to RF.csv file
+        save_results(optimal_window, predictions, actuals)
+
+if clf_name == 'LinR':
+    print('Analysis for Linear Regression\n -------------------------------------')
+    optimal_window = 11
+    clf = LinearRegression()
+    look_ahead = 11
+
+    # Find optimal window size for LinR
+    Linall_iterations = input(
+        "Would you like to iterate over all possible window sizes to find the optimal window size (Y/N)? If so, please note this may take an extensive amount of time. \n")
+    if Linall_iterations == 'Y':
+        print('Running all iterations of Linear Regression to determine optimal window size...')
+        find_optimal_window(clf,277)
+        read_windows()
+
+    # Run LinR for optimal window size
+    Lininput = input(
+        'Please indicate Y/N to proceed with running LinR with the optimal window size specified: {} \n'.format(
+            309 - optimal_window))
+    if Lininput == 'Y':
+        print('Running Linear Regression with optimal window size...')
+        accuracy, actuals, preds, mse = model(optimal_window, X, y, clf)
+        results(actuals, preds)
+
+    # Find optimal look ahead value for RFR
+    Linall_iterations_lookahead = input(
+        "Would you like to iterate over all possible look ahead values to find the optimal look ahead value (Y/N)? If so, please note this may take an extensive amount of time. \n")
+    if Linall_iterations_lookahead == 'Y':
+        print('Running all iterations to find optimal look ahead value...')
+        find_optimal_lookahead(optimal_window,X,y,clf)
+        read_look_aheads()
+
+    # Run RF for optimal window size of 302 and optimal look_ahead of 7
+    Lin_lookinput = input(
+        'Please indicate Y/N to proceed with running LinR with the optimal window size and look ahead value: {}, {} \n'.format(
+            309 - optimal_window, look_ahead))
+    if Lin_lookinput == 'Y':
+        print('Running Linear Regression with optimal window size and optimal look ahead value...')
         avg_accuracy, predictions, actuals, mse = model_lookahead(optimal_window, X, y, look_ahead, clf)
         # Save predictions and actuals for LR to RF.csv file
         save_results(optimal_window, predictions, actuals)
